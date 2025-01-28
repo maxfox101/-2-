@@ -7,11 +7,8 @@ MyWindowWithImage::MyWindowWithImage(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Сохраним путь в переменную.
-    QString absolute_path_file = "C:\\Users\\user\\Downloads\\i-love-qt.png";
-
-    // Вызываем созданный ранее метод.
-    SetPixmap(ui->lbl_pixmap, absolute_path_file);
+    QString image_path = ":/images/images/i-love-qt.png";
+    SetPixmap(ui->lbl_pixmap, image_path);
 }
 
 MyWindowWithImage::~MyWindowWithImage()
@@ -36,6 +33,9 @@ void MyWindowWithImage::FitToImage(QLabel* label)
 
     const QPixmap* pixmap = label->pixmap();
     label->setFixedSize(pixmap->width(), pixmap->height());
+
+    this->setFixedSize(label->width(),label->height());
+    label->move(0,0);
 }
 
 void MyWindowWithImage::CenterImage(QLabel* label)
@@ -58,4 +58,9 @@ void MyWindowWithImage::CenterImage(QLabel* label)
 
     // Перемещаем изображение в центр
     label->move(x, y);
+}
+
+void MainWindow::UpdateSizeLabel() {
+    auto new_text = std::to_string(width()) + "x" + std::to_string(height());
+    ui->lbl_size->setText(QString::fromStdString(new_text));
 }
