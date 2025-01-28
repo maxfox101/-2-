@@ -14,6 +14,7 @@ class MyWindowWithImage : public QMainWindow
 {
     Q_OBJECT
 
+
 public:
     MyWindowWithImage(QWidget *parent = nullptr);
     ~MyWindowWithImage();
@@ -22,8 +23,20 @@ public:
     void FitToImage(QLabel* label);
     void CenterImage(QLabel* label);  // Новый метод для центрирования изображения
 
+
 private:
     Ui::MyWindowWithImage *ui;
 
 };
-#endif // MYWINDOWWITHIMAGE_H
+#endif // MYWINDOWWITHIMAGE_
+
+class MainWindow : public QMainWindow
+{
+
+public:
+    void UpdateSizeLabel();
+
+private:
+    void resizeEvent(QResizeEvent* event) override;
+
+};
